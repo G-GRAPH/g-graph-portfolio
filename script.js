@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.12 });
 
   revealItems.forEach((item) => revealObserver.observe(item));
 
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentIndex = 0;
   let autoplay;
 
-  if (slides.length) {
+  if (slides.length && dotsWrap) {
     slides.forEach((_, index) => {
       const dot = document.createElement('button');
       dot.type = 'button';
@@ -56,17 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function restartAutoPlay() {
       clearInterval(autoplay);
       autoplay = setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        renderSlides();
-      }, 5200);
+        nextSlide();
+      }, 5600);
     }
 
-    prevButton.addEventListener('click', () => {
+    prevButton?.addEventListener('click', () => {
       prevSlide();
       restartAutoPlay();
     });
 
-    nextButton.addEventListener('click', () => {
+    nextButton?.addEventListener('click', () => {
       nextSlide();
       restartAutoPlay();
     });
@@ -79,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxImage = document.querySelector('.lightbox-stage img');
   const lightboxTitle = document.querySelector('.lightbox-meta strong');
   const lightboxType = document.querySelector('.lightbox-meta span');
-  const closeButton = document.querySelector('.lightbox-close');
   const lightboxStage = document.querySelector('.lightbox-stage');
+  const closeButton = document.querySelector('.lightbox-close');
 
   document.querySelectorAll('.project-button').forEach((button) => {
     button.addEventListener('click', () => {
@@ -88,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const alt = button.dataset.alt;
       const slide = button.closest('.slide');
 
-      if (!image || !slide) return;
+      if (!image || !slide || !lightbox || !lightboxImage) return;
 
       lightboxImage.src = image;
-      lightboxImage.alt = alt;
+      lightboxImage.alt = alt || 'Expanded design preview';
       lightboxTitle.textContent = slide.dataset.title || 'G GRAPH';
       lightboxType.textContent = slide.dataset.type || 'Portfolio piece';
 
@@ -102,23 +101,25 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function closeLightbox() {
+    if (!lightbox) return;
     lightbox.classList.remove('open');
     lightbox.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
   }
 
-  closeButton.addEventListener('click', closeLightbox);
-  lightbox.addEventListener('click', (event) => {
+  closeButton?.addEventListener('click', closeLightbox);
+
+  lightbox?.addEventListener('click', (event) => {
     if (event.target === lightbox) closeLightbox();
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+    if (event.key === 'Escape' && lightbox && lightbox.classList.contains('open')) {
       closeLightbox();
     }
   });
 
-  lightboxStage.addEventListener('mousemove', (event) => {
+  lightboxStage?.addEventListener('mousemove', (event) => {
     const rect = lightboxStage.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
