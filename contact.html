@@ -41,15 +41,21 @@
           </div>
         </div>
 
-        <form class="contact-form" action="mailto:akachukwuchris3@gmail.com" method="post" enctype="text/plain">
+        <!-- FormSubmit delivers this form to the G GRAPH email address. -->
+        <form class="contact-form" action="https://formsubmit.co/akachukwuchris3@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New G GRAPH portfolio inquiry" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://g-graph.github.io/g-graph-portfolio/contact.html?sent=true" />
+
           <label>
             Name
-            <input type="text" name="name" placeholder="Your name" required />
+            <input type="text" name="name" placeholder="Your name" autocomplete="name" required />
           </label>
 
           <label>
             Email
-            <input type="email" name="email" placeholder="Your email" required />
+            <input type="email" name="email" placeholder="Your email" autocomplete="email" required />
           </label>
 
           <label>
