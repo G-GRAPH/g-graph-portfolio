@@ -1,153 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const enhancementStyles = document.createElement('link');
-  enhancementStyles.rel = 'stylesheet';
-  enhancementStyles.href = 'enhancements.css';
-  document.head.appendChild(enhancementStyles);
-
-  const header = document.querySelector('.site-header');
-  const nav = document.querySelector('.main-nav');
-  if (nav) {
-    const menuButton = document.createElement('button');
-    menuButton.className = 'menu-toggle';
-    menuButton.type = 'button';
-    menuButton.setAttribute('aria-label', 'Open navigation menu');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.innerHTML = '☰';
-    nav.prepend(menuButton);
-
-    const closeMenu = () => {
-      nav.classList.remove('menu-open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.setAttribute('aria-label', 'Open navigation menu');
-      menuButton.innerHTML = '☰';
-    };
-
-    menuButton.addEventListener('click', () => {
-      const isOpen = nav.classList.toggle('menu-open');
-      menuButton.setAttribute('aria-expanded', String(isOpen));
-      menuButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
-      menuButton.innerHTML = isOpen ? '×' : '☰';
-    });
-
-    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
-    document.addEventListener('click', (event) => {
-      if (!nav.contains(event.target)) closeMenu();
-    });
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 680) closeMenu();
-    });
-  }
-
-  if (header) {
-    const updateHeader = () => header.classList.toggle('scrolled', window.scrollY > 18);
-    updateHeader();
-    window.addEventListener('scroll', updateHeader, { passive: true });
-  }
-
-  const revealItems = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    revealItems.forEach((item) => revealObserver.observe(item));
-  } else {
-    revealItems.forEach((item) => item.classList.add('visible'));
-  }
-
-  const slides = [...document.querySelectorAll('.slide')];
-  const dotsWrap = document.querySelector('.carousel-dots');
-  const prevButton = document.querySelector('.carousel-arrow.prev');
-  const nextButton = document.querySelector('.carousel-arrow.next');
-  let currentIndex = 0;
-  let autoplay;
-
-  if (slides.length && dotsWrap) {
-    slides.forEach((_, index) => {
-      const dot = document.createElement('button');
-      dot.type = 'button';
-      dot.className = 'carousel-dot';
-      dot.setAttribute('aria-label', `Show slide ${index + 1}`);
-      dot.addEventListener('click', () => {
-        currentIndex = index;
-        renderSlides();
-        restartAutoPlay();
-      });
-      dotsWrap.appendChild(dot);
-    });
-
-    function renderSlides() {
-      slides.forEach((slide, index) => slide.classList.toggle('is-active', index === currentIndex));
-      dotsWrap.querySelectorAll('.carousel-dot').forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
-    }
-
-    function restartAutoPlay() {
-      clearInterval(autoplay);
-      autoplay = setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        renderSlides();
-      }, 5600);
-    }
-
-    prevButton?.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      renderSlides();
-      restartAutoPlay();
-    });
-
-    nextButton?.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      renderSlides();
-      restartAutoPlay();
-    });
-
-    renderSlides();
-    restartAutoPlay();
-  }
-
-  const lightbox = document.querySelector('.lightbox');
-  const lightboxImage = document.querySelector('.lightbox-stage img');
-  const lightboxTitle = document.querySelector('.lightbox-meta strong');
-  const lightboxType = document.querySelector('.lightbox-meta span');
-  const lightboxStage = document.querySelector('.lightbox-stage');
-  const closeButton = document.querySelector('.lightbox-close');
-
-  document.querySelectorAll('.project-button').forEach((button) => {
-    button.addEventListener('click', () => {
-      const slide = button.closest('.slide');
-      if (!slide || !lightbox || !lightboxImage) return;
-      lightboxImage.src = button.dataset.image;
-      lightboxImage.alt = button.dataset.alt || 'Expanded design preview';
-      if (lightboxTitle) lightboxTitle.textContent = slide.dataset.title || 'G GRAPH';
-      if (lightboxType) lightboxType.textContent = slide.dataset.type || 'Portfolio piece';
-      lightbox.classList.add('open');
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('modal-open');
-    });
-  });
-
-  const closeLightbox = () => {
-    if (!lightbox) return;
-    lightbox.classList.remove('open');
-    lightbox.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('modal-open');
-  };
-
-  closeButton?.addEventListener('click', closeLightbox);
-  lightbox?.addEventListener('click', (event) => {
-    if (event.target === lightbox) closeLightbox();
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') closeLightbox();
-  });
-
-  lightboxStage?.addEventListener('mousemove', (event) => {
-    const rect = lightboxStage.getBoundingClientRect();
-    lightboxStage.style.setProperty('--zoom-x', `${((event.clientX - rect.left) / rect.width) * 100}%`);
-    lightboxStage.style.setProperty('--zoom-y', `${((event.clientY - rect.top) / rect.height) * 100}%`);
-  });
+document.addEventListener('DOMContentLoaded',()=>{
+  const nav=document.querySelector('.nav-links');
+  const menu=document.querySelector('.menu-toggle');
+  menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close navigation':'Open navigation')});
+  nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
+  window.addEventListener('resize',()=>{if(innerWidth>560)nav?.classList.remove('open')});
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  const slides=[...document.querySelectorAll('.slide')],dots=document.querySelector('.carousel-dots');let current=0,timer;
+  slides.forEach((_,i)=>{const dot=document.createElement('button');dot.className='carousel-dot';dot.type='button';dot.setAttribute('aria-label',`Show project ${i+1}`);dot.onclick=()=>{current=i;render();restart()};dots?.append(dot)});
+  function render(){slides.forEach((slide,i)=>slide.classList.toggle('is-active',i===current));dots?.querySelectorAll('button').forEach((dot,i)=>dot.classList.toggle('active',i===current))}
+  function restart(){clearInterval(timer);timer=setInterval(()=>{current=(current+1)%slides.length;render()},5600)}
+  document.querySelector('.prev')?.addEventListener('click',()=>{current=(current-1+slides.length)%slides.length;render();restart()});document.querySelector('.next')?.addEventListener('click',()=>{current=(current+1)%slides.length;render();restart()});if(slides.length){render();restart()}
+  const box=document.querySelector('.lightbox'),viewer=box?.querySelector('img'),stage=box?.querySelector('.lightbox-stage');
+  document.querySelectorAll('.project-button').forEach(button=>button.addEventListener('click',()=>{const slide=button.closest('.slide');viewer.src=button.dataset.image;viewer.alt=button.dataset.alt;box.querySelector('strong').textContent=slide.dataset.title;box.querySelector('small').textContent=slide.dataset.type;box.classList.add('open');box.setAttribute('aria-hidden','false');document.body.classList.add('modal-open')}));
+  const close=()=>{box?.classList.remove('open');box?.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open')};box?.querySelector('.lightbox-close').addEventListener('click',close);box?.addEventListener('click',e=>{if(e.target===box)close()});document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});stage?.addEventListener('mousemove',e=>{const r=stage.getBoundingClientRect();stage.style.setProperty('--zoom-x',`${(e.clientX-r.left)/r.width*100}%`);stage.style.setProperty('--zoom-y',`${(e.clientY-r.top)/r.height*100}%`)});
 });

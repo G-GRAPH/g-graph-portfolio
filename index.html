@@ -1,167 +1,62 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="G GRAPH — creator-focused graphic design portfolio and contact page." />
-    <title>G GRAPH | Thumbnail Heaven</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header container">
-      <a href="index.html" class="brand" aria-label="G GRAPH home">
-        <span class="brand-mark">G</span>
-        <span class="brand-text">G GRAPH</span>
-      </a>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="G GRAPH — minimalist graphic design and thumbnail portfolio for creators.">
+  <title>G GRAPH — Thumbnail Heaven</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="enhancements.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-      <nav class="main-nav" aria-label="Main navigation">
+  <header class="site-header container">
+    <a class="brand" href="index.html" aria-label="G GRAPH home"><span>G</span><b>G GRAPH</b></a>
+    <nav class="nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation"><span></span><span></span></button>
+      <div class="nav-links" id="nav-links">
         <a href="#work">Work</a>
         <a href="#about">About</a>
-        <a href="contact.html" class="button-link">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="hero container reveal">
-        <div class="hero-copy">
-          <p class="eyebrow">Independent visual design studio</p>
-          <h1>
-            G-GRAPH
-            <span>THUMBNAIL HEAVEN</span>
-          </h1>
-          <p class="lead">
-            Minimal, sharp, and scroll-stopping visual storytelling for creators,
-            brands, and digital-first businesses.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#work" class="button-primary">View work</a>
-            <a href="contact.html" class="button-secondary">Let’s talk</a>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-label="Abstract design artwork">
-          <div class="visual-card large-card">
-            <div class="tag">G-GRAPH</div>
-            <div class="grid-lines"></div>
-            <div class="ring"></div>
-          </div>
-
-          <div class="visual-card small-card">
-            <span>Thumbnail design</span>
-            <strong>01</strong>
-          </div>
-        </div>
-      </section>
-
-      <section id="work" class="portfolio container reveal">
-        <div class="section-header">
-          <p class="eyebrow">Selected work</p>
-          <h2>Minimal visuals with impact.</h2>
-        </div>
-
-        <div class="carousel" data-carousel>
-          <button class="carousel-arrow prev" type="button" aria-label="Previous work">←</button>
-
-          <div class="carousel-stage">
-            <article class="slide is-active" data-title="Aurora / Series 01" data-type="Thumbnail system · 2026">
-              <button class="project-button" type="button" data-image="images/aurora.svg" data-alt="Aurora series artwork">
-                <img src="images/aurora.svg" alt="Aurora series artwork" />
-              </button>
-              <div class="project-meta">
-                <span class="meta-tag">Thumbnail system</span>
-                <h3>Aurora / Series 01</h3>
-              </div>
-            </article>
-
-            <article class="slide" data-title="Mono Motion" data-type="Campaign art · 2026">
-              <button class="project-button" type="button" data-image="images/mono.svg" data-alt="Mono motion artwork">
-                <img src="images/mono.svg" alt="Mono motion artwork" />
-              </button>
-              <div class="project-meta">
-                <span class="meta-tag">Campaign art</span>
-                <h3>Mono Motion</h3>
-              </div>
-            </article>
-
-            <article class="slide" data-title="Echoes" data-type="Cover art · 2025">
-              <button class="project-button" type="button" data-image="images/echo.svg" data-alt="Echoes artwork">
-                <img src="images/echo.svg" alt="Echoes artwork" />
-              </button>
-              <div class="project-meta">
-                <span class="meta-tag">Cover artwork</span>
-                <h3>Echoes</h3>
-              </div>
-            </article>
-
-            <article class="slide" data-title="Frame of Mind" data-type="Creator identity · 2025">
-              <button class="project-button" type="button" data-image="images/frame.svg" data-alt="Frame of mind artwork">
-                <img src="images/frame.svg" alt="Frame of mind artwork" />
-              </button>
-              <div class="project-meta">
-                <span class="meta-tag">Creator identity</span>
-                <h3>Frame of Mind</h3>
-              </div>
-            </article>
-          </div>
-
-          <button class="carousel-arrow next" type="button" aria-label="Next work">→</button>
-          <div class="carousel-dots" aria-label="Project navigation"></div>
-        </div>
-      </section>
-
-      <section id="about" class="about container reveal">
-        <div class="section-header narrow-gap">
-          <p class="eyebrow">About</p>
-          <h2>Designed to stop the scroll.</h2>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-copy">
-            <p>
-              G GRAPH creates premium visual identities, thumbnail concepts, and
-              digital artwork tailored for modern content creators.
-            </p>
-            <p>
-              Every project blends clean design, bold typography, and an instant
-              visual hook so your work feels memorable from the first glance.
-            </p>
-          </div>
-
-          <div class="about-points">
-            <div><strong>01</strong><span>Thumbnail design</span></div>
-            <div><strong>02</strong><span>Brand visuals</span></div>
-            <div><strong>03</strong><span>Creative direction</span></div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer container">
-      <p>© G GRAPH</p>
-      <p>G-GRAPH THUMBNAIL HEAVEN</p>
-      <a href="contact.html">Contact</a>
-    </footer>
-
-    <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded project image">
-      <button class="lightbox-close" type="button" aria-label="Close image">×</button>
-
-      <div class="lightbox-panel">
-        <div class="lightbox-stage">
-          <img src="" alt="Expanded project preview" />
-          <span class="lightbox-tip">Move your cursor to zoom in</span>
-        </div>
-
-        <div class="lightbox-meta">
-          <strong></strong>
-          <span></span>
-        </div>
+        <a class="nav-cta" href="contact.html">Start a project <span>↗</span></a>
       </div>
-    </div>
+    </nav>
+  </header>
 
-    <script src="script.js"></script>
-  </body>
+  <main>
+    <section class="hero container reveal">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent visual design studio <span>•</span> 2024—2026</p>
+        <h1>G-GRAPH<br><em>THUMBNAIL HEAVEN</em></h1>
+        <p class="hero-text">Scroll-stopping visuals for creators who refuse to blend in. Thoughtful design, sharp ideas, and a little bit of drama.</p>
+        <div class="hero-actions"><a class="button-primary" href="#work">View selected work</a><a class="button-secondary" href="contact.html">Let’s talk <span>↗</span></a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="hero-art-main"><span class="art-label">G-GRAPH / 01</span><div class="art-grid"></div><div class="art-orbit"></div><strong>G</strong></div><div class="hero-art-note"><small>Thumbnail<br>design</small><b>01</b></div></div>
+    </section>
+
+    <section id="work" class="work container reveal">
+      <div class="section-heading"><p class="eyebrow">01 / Selected work</p><p class="mono">Click a piece to inspect it</p></div>
+      <div class="carousel" data-carousel>
+        <button class="carousel-arrow prev" type="button" aria-label="Previous project">←</button>
+        <div class="carousel-stage">
+          <article class="slide is-active" data-title="Aurora / Series 01" data-type="Thumbnail system · 2026"><button class="project-button" type="button" data-image="images/aurora.svg" data-alt="Aurora series artwork"><img src="images/aurora.svg" alt="Aurora series artwork"></button><div class="project-meta"><span>Thumbnail system</span><h2>Aurora / Series 01</h2></div></article>
+          <article class="slide" data-title="Mono Motion" data-type="Campaign art · 2026"><button class="project-button" type="button" data-image="images/mono.svg" data-alt="Mono motion artwork"><img src="images/mono.svg" alt="Mono motion artwork"></button><div class="project-meta"><span>Campaign art</span><h2>Mono Motion</h2></div></article>
+          <article class="slide" data-title="Echoes" data-type="Cover art · 2025"><button class="project-button" type="button" data-image="images/echo.svg" data-alt="Echoes artwork"><img src="images/echo.svg" alt="Echoes artwork"></button><div class="project-meta"><span>Cover artwork</span><h2>Echoes</h2></div></article>
+          <article class="slide" data-title="Frame of Mind" data-type="Creator identity · 2025"><button class="project-button" type="button" data-image="images/frame.svg" data-alt="Frame of mind artwork"><img src="images/frame.svg" alt="Frame of mind artwork"></button><div class="project-meta"><span>Creator identity</span><h2>Frame of Mind</h2></div></article>
+        </div>
+        <button class="carousel-arrow next" type="button" aria-label="Next project">→</button><div class="carousel-dots" aria-label="Project navigation"></div>
+      </div>
+    </section>
+
+    <section id="about" class="about container reveal"><div class="section-heading"><p class="eyebrow">02 / The studio</p><h2>Good design should<br><em>make you stop.</em></h2></div><div class="about-grid"><div><p>G GRAPH is a graphic design studio focused on thumbnail design, visual identities, and digital experiences for content creators.</p><p>We turn big ideas into clean, confident visuals that feel unmistakably yours.</p></div><div class="about-points"><div><b>01</b><span>Thumbnail design</span></div><div><b>02</b><span>Brand visuals</span></div><div><b>03</b><span>Creative direction</span></div></div></div></section>
+  </main>
+
+  <footer class="footer container"><span>© G GRAPH</span><span>G-GRAPH THUMBNAIL HEAVEN</span><a href="mailto:akachukwuchris3@gmail.com">akachukwuchris3@gmail.com ↗</a></footer>
+  <div class="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Expanded artwork"><button class="lightbox-close" type="button" aria-label="Close artwork">×</button><div class="lightbox-panel"><div class="lightbox-stage"><img src="" alt=""><span>Move your cursor over the artwork to zoom</span></div><div class="lightbox-caption"><strong></strong><small></small></div></div></div>
+  <script src="script.js"></script>
+</body>
 </html>
